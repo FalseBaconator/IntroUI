@@ -6,13 +6,14 @@ using TMPro;
 
 public class ButtonCode : MonoBehaviour
 {
-    public int score;
+    GameObject scoreKeeper;
     public TextMeshProUGUI text;
 
     private void Start()
     {
+        scoreKeeper = GameObject.FindGameObjectWithTag("ScoreKeeper");
         if(text != null)
-            text.text = score.ToString();
+            text.text = scoreKeeper.GetComponent<ScoreKeeper>().score.ToString();
     }
 
     public void Play()
@@ -32,10 +33,10 @@ public class ButtonCode : MonoBehaviour
 
     public void changeScore(int toChange)
     {
-        score += toChange;
-        if (score < 0)
-            score = 0;
-        text.text = score.ToString();
+        scoreKeeper.GetComponent<ScoreKeeper>().score += toChange;
+        if (scoreKeeper.GetComponent<ScoreKeeper>().score < 0)
+            scoreKeeper.GetComponent<ScoreKeeper>().score = 0;
+        text.text = scoreKeeper.GetComponent<ScoreKeeper>().score.ToString();
     }
 
     public void RandomScore()
