@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ButtonCode : MonoBehaviour
@@ -10,7 +11,8 @@ public class ButtonCode : MonoBehaviour
 
     private void Start()
     {
-        text.text = score.ToString();
+        if(text != null)
+            text.text = score.ToString();
     }
 
     public void Play()
@@ -39,6 +41,11 @@ public class ButtonCode : MonoBehaviour
     public void RandomScore()
     {
         changeScore(Random.Range(-25, 25));
+    }
+
+    public void ChangeScene(int scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 
 }
